@@ -1,77 +1,76 @@
-require("dotenv").config();
+import "dotenv/config";
+import express from "express";
+import axios from "axios";
+import ReactDOM from "react-dom/server";
+import { ServerStyleSheet, StyleSheetManager } from "styled-components";
+import App from "./src/App";
 
-const express = require("express");
-const axios = require("axios");
-const { FullArticle } = require("@yleisradio/arkki-web");
-const ReactDOM = require("react-dom/server");
-const { ServerStyleSheet, StyleSheetManager } = require("styled-components");
-
-const run = async () => {
+const render = async (articuladoId) => {
   const ret = await axios.get(
-    `https://articles.api.yle.fi/v2/articles.json?app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}&id=74-20011471`
+    `https://articles.api.yle.fi/v2/articles.json?app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}&id=${articuladoId}`
   );
 
   const articulado = ret.data.data[0];
 
-  const render = () => {
-    const sheet = new ServerStyleSheet();
-    try {
-      const html = ReactDOM.renderToString(
-        <StyleSheetManager sheet={sheet.instance}>
-          <FullArticle
-            endpoint="aav2"
-            data={articulado}
-            disableSubjectInteraction
-            showImages
-            showPrimarySubject={false}
-            showShareButtons={false}
-            showSubjectList={false}
-            showFullTimestamps
-          />
-        </StyleSheetManager>
-      );
-      const styleTags = sheet.getStyleTags();
+  const sheet = new ServerStyleSheet();
+  try {
+    const html = ReactDOM.renderToString(
+      <StyleSheetManager sheet={sheet.instance}>
+        <App articulado={articulado} />
+      </StyleSheetManager>
+    );
+    const styleTags = sheet.getStyleTags();
 
-      return [html, styleTags];
+    return [articulado, html, styleTags];
 
-      // or sheet.getStyleElement();
-    } catch (error) {
-      // handle error
-      console.error(error);
-    } finally {
-      sheet.seal();
-    }
-  };
+    // or sheet.getStyleElement();
+  } catch (error) {
+    // handle error
+    console.error(error);
+    throw error;
+  } finally {
+    sheet.seal();
+  }
+};
 
+const run = async () => {
   const app = express();
 
   app.use("/dist", express.static("dist"));
 
-  // respond with "hello world" when a GET request is made to the homepage
   app.get("/", (req, res) => {
-    const [tussenhofer, styleTags] = render();
+    res.send("sugen Sie, bitte?");
+  });
 
-    res.send(`<!doctype html>
-      <html dir="ltr" lang="fi">
-        <head>
-            <title>Moi</title>
-            ${styleTags}
-        </head>
-        <body>
-        <h1>RIBULSK-ARKKI</h1>
+  app.get("/a/:articuladoId", async (req, res) => {
+    console.log("render", render);
 
+    try {
+      const [articulado, tussenhofer, styleTags] = await render(
+        req.params.articuladoId
+      );
 
-        <div id="app">
-        ${tussenhofer}
-        </div>
+      res.send(`<!doctype html>
+            <html dir="ltr" lang="fi">
+              <head>
+                  <title>Ribuls-ARSE</title>
+                  ${styleTags}
+              </head>
+              <body>
 
-
-
-        <div id="state">${JSON.stringify(articulado)}</div>
-
-        <script src="/dist/main.js"></script>
-        </body>
-      </html>`);
+              <button id="hydrado">hydrado!!!</button>
+              
+              <div id="app">${tussenhofer}</div>
+      
+              <div id="state">${JSON.stringify(articulado)}</div>
+      
+              <script src="/dist/main.js"></script>
+              </body>
+            </html>`);
+    } catch (e) {
+      console.log(e);
+      res.send("Oh noes errores fatales");
+    }
   });
 
   app.listen(3003, () => {

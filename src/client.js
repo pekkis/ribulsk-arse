@@ -1,26 +1,18 @@
 import ReactDOM from "react-dom/client";
-import { FullArticle } from "@yleisradio/arkki-web";
+import App from "./App";
 
-const render = () => {
+const hydratore = () => {
   const container = document.getElementById("app");
 
-  const stateContainer = document.getElementById("state");
+  console.log("CONTAINER", container);
 
+  const stateContainer = document.getElementById("state");
   const articulado = JSON.parse(stateContainer.textContent);
 
-  const root = ReactDOM.hydrateRoot(
-    container,
-    <FullArticle
-      endpoint="aav2"
-      data={articulado}
-      disableSubjectInteraction
-      showImages
-      showPrimarySubject={false}
-      showShareButtons={false}
-      showSubjectList={false}
-      showFullTimestamps
-    />
-  );
+  ReactDOM.hydrateRoot(container, <App articulado={articulado} />);
 };
 
-window.render = render;
+const hydrado = document.getElementById("hydrado");
+hydrado.addEventListener("click", () => {
+  hydratore();
+});
