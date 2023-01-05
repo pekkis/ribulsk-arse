@@ -59,8 +59,11 @@ const run = async () => {
               <body>
 
               <button id="hydrado">hydrado!!!</button>
+              <button id="renderado">renderado!!!</button>
               
               <div id="app">${tussenhofer}</div>
+
+              <div id="app2"></div>
       
               <div id="state">${JSON.stringify(articulado)}</div>
       

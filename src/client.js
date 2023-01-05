@@ -12,7 +12,21 @@ const hydratore = () => {
   ReactDOM.hydrateRoot(container, <App articulado={articulado} />);
 };
 
+const rendatore = () => {
+  const container = document.getElementById("app2");
+  const stateContainer = document.getElementById("state");
+  const articulado = JSON.parse(stateContainer.textContent);
+
+  const root = ReactDOM.createRoot(container);
+  root.render(<App articulado={articulado} />);
+};
+
 const hydrado = document.getElementById("hydrado");
 hydrado.addEventListener("click", () => {
   hydratore();
+});
+
+const renderado = document.getElementById("renderado");
+renderado.addEventListener("click", () => {
+  rendatore();
 });
