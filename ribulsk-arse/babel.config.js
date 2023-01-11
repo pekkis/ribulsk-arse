@@ -1,6 +1,12 @@
 const plugin = [
   "babel-plugin-styled-components",
-  { ssr: true, namespace: "ribulsk", displayName: true },
+  {
+    ssr: true,
+    namespace: "ribulsk",
+    displayName: true,
+    preprocess: false,
+    preProcess: false,
+  },
 ];
 
 module.exports = {

@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "packages": {
+    "@yleisradio/arkki-web": {
+      "signature": "e69e25b6002e30359b6a2dfcf134ee98",
+      "file": true,
+      "replaced": "^8.5.1"
+    },
+    "@yleisradio/yds-core": {
+      "signature": "8597b8090794be24ac2d7393787ab8a4",
+      "file": true,
+      "replaced": "^1.0.0-semrel-config.4"
+    }
+  }
+}
