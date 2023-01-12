@@ -4,6 +4,7 @@ import axios from "axios";
 import ReactDOM from "react-dom/server";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import App from "./src/App";
+import fs from "fs/promises";
 
 const render = async (articuladoId) => {
   const ret = await axios.get(
@@ -36,6 +37,17 @@ const render = async (articuladoId) => {
 const run = async () => {
   const app = express();
 
+  const raw = await fs.readFile("./webpack-stats.json");
+  const json = JSON.parse(raw);
+
+  console.log(json);
+
+  const bundleUrls = json.entrypoints.main.assets.map(
+    (asset) => `/dist/${asset.name}`
+  );
+
+  console.log(bundleUrls);
+
   app.use("/dist", express.static("dist"));
 
   app.get("/", (req, res) => {
@@ -67,6 +79,7 @@ const run = async () => {
       
               <div id="state">${JSON.stringify(articulado)}</div>
       
+              ${bundleUrls.map((bu) => `<script src="${bu}"></script>`)}
               <script src="/dist/main.js"></script>
               </body>
             </html>`);

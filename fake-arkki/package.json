@@ -6,7 +6,8 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production pnpm rollup -c"
   },
   "keywords": [],
   "author": "pekkis",
@@ -24,7 +25,22 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
+    "@types/styled-components": "^5.1.26",
+    "@yleisradio/yds-components-react": "1.0.0-beta.13",
+    "@yleisradio/yds-core": "1.0.0-beta.13",
+    "@yleisradio/yds-icons": "1.0.0-beta.13",
+    "@yleisradio/yds-icons-react": "1.0.0-beta.13",
+    "react-is": "^18.2.0",
     "rollup": "^3.9.1",
-    "rollup-plugin-node-externals": "^5.1.0"
+    "rollup-plugin-node-externals": "^5.1.0",
+    "styled-components": "^5.3.6",
+    "tslib": "^2.4.1"
+  },
+  "peerDependencies": {
+    "@yleisradio/yds-components-react": "1.0.0-beta.13",
+    "@yleisradio/yds-core": "1.0.0-beta.13",
+    "@yleisradio/yds-icons": "1.0.0-beta.13",
+    "@yleisradio/yds-icons-react": "1.0.0-beta.13",
+    "styled-components": "^5.3.6"
   }
 }

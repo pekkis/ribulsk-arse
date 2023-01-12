@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@yleisradio/arkki-web": {
-      "signature": "e69e25b6002e30359b6a2dfcf134ee98",
+      "signature": "7dd7b7482c1f66daa52f79ae2ca573d0",
       "file": true,
       "replaced": "^8.5.1"
     },
@@ -10,6 +10,10 @@
       "signature": "8597b8090794be24ac2d7393787ab8a4",
       "file": true,
       "replaced": "^1.0.0-semrel-config.4"
+    },
+    "@yleisradio/yds-icons-react": {
+      "signature": "b557ea17ab621be019ee1924a2fd7304",
+      "file": true
     }
   }
 }
