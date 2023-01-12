@@ -21,6 +21,7 @@
     "@yleisradio/arkki-web": "file:.yalc/@yleisradio/arkki-web",
     "@yleisradio/yds-core": "file:.yalc/@yleisradio/yds-core",
     "@yleisradio/yds-icons-react": "file:.yalc/@yleisradio/yds-icons-react",
+    "@yleisradio/yle-design-system": "^0.2.12",
     "axios": "^1.2.2",
     "babel-loader": "^9.1.0",
     "blurhash": "^2.0.4",

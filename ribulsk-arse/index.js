@@ -80,7 +80,6 @@ const run = async () => {
               <div id="state">${JSON.stringify(articulado)}</div>
       
               ${bundleUrls.map((bu) => `<script src="${bu}"></script>`)}
-              <script src="/dist/main.js"></script>
               </body>
             </html>`);
     } catch (e) {

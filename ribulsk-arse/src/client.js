@@ -1,6 +1,8 @@
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
+console.log("haha");
+
 const hydratore = () => {
   const container = document.getElementById("app");
 
@@ -23,6 +25,7 @@ const rendatore = () => {
 
 const hydrado = document.getElementById("hydrado");
 hydrado.addEventListener("click", () => {
+  console.log("hi hi");
   hydratore();
 });
 

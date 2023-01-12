@@ -4,7 +4,7 @@
     "@yleisradio/arkki-web": {
       "signature": "7dd7b7482c1f66daa52f79ae2ca573d0",
       "file": true,
-      "replaced": "^8.5.1"
+      "replaced": "^8.9.0"
     },
     "@yleisradio/yds-core": {
       "signature": "8597b8090794be24ac2d7393787ab8a4",
